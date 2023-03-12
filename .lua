@@ -192,7 +192,7 @@ CreditsTab:AddLabel("Made by Howless <3")
 EggsTab:AddDropdown({
     Name = "SelectEgg",
 	Default = "Sarnek Egg",
-	Options = {"Sarnek Egg", "2"},
+	Options = {"Sarnek Egg", "Ninja Town Egg"},
 	Callback = function(Value)
 		_G.SelectEgg = Value
         print(_G.SelectEgg)
