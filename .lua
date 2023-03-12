@@ -12,6 +12,7 @@ _G.EquipBestPet = true
 _G.EquipBestSword = true
 _G.SkillSpin = true
 _G.UseSkill = true
+_G.GetQuest = true
 
 
 --Functions
@@ -65,6 +66,12 @@ function UseSkill()
     end
 end
 
+function GetQuest()
+     while _G.GetQuest == true do
+        game:GetService("ReplicatedStorage").Remotes.questStatus:FireServer("Get")
+        wait(5)
+     end
+    end
 
 
 -- Tabs
@@ -121,6 +128,16 @@ FarmTab:AddToggle({
 	Callback = function(Value)
 		_G.UseSkill = Value
         UseSkill()
+	end    
+})
+
+
+FarmTab:AddToggle({
+	Name = "GetQuest",
+	Default = false,
+	Callback = function(Value)
+		_G.GetQuest = Value
+        GetQuest()
 	end    
 })
 
