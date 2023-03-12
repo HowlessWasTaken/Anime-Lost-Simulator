@@ -19,7 +19,7 @@ _G.GetQuest = true
 function AutoClick()
     while _G.AutoClick == true do
         game:GetService("ReplicatedStorage").Remotes.attack:FireServer()
-        wait(.0000001)
+        wait(.01)
      end
 end
 
