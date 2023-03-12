@@ -87,6 +87,13 @@ local MiscTab = Window:MakeTab({
 })
 
 
+local CreditsTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
 -- Farm Toggles
 FarmTab:AddToggle({
 	Name = "AutoClick",
@@ -159,6 +166,8 @@ MiscTab:AddToggle({
 	end    
 })
 
+
+CreditsTab:AddLabel("Made by Howless <3")
 
 
 
