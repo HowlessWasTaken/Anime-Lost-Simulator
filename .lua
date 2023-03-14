@@ -12,14 +12,13 @@ _G.EquipBestPet = true
 _G.EquipBestSword = true
 _G.SkillSpin = true
 _G.UseSkill = true
-_G.GetQuest = true
 
 
 --Functions
 function AutoClick()
     while _G.AutoClick == true do
         game:GetService("ReplicatedStorage").Remotes.attack:FireServer()
-        wait(.01)
+        wait(.0000001)
      end
 end
 
@@ -66,12 +65,6 @@ function UseSkill()
     end
 end
 
-function GetQuest()
-     while _G.GetQuest == true do
-        game:GetService("ReplicatedStorage").Remotes.questStatus:FireServer("Get")
-        wait(5)
-     end
-    end
 
 
 -- Tabs
@@ -86,6 +79,13 @@ local EggsTab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
+local TpTab = Window:MakeTab({
+    Name = "Teleport",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
 
 local MiscTab = Window:MakeTab({
     Name = "Misc",
@@ -132,16 +132,6 @@ FarmTab:AddToggle({
 })
 
 
-FarmTab:AddToggle({
-	Name = "GetQuest",
-	Default = false,
-	Callback = function(Value)
-		_G.GetQuest = Value
-        GetQuest()
-	end    
-})
-
-
 EggsTab:AddLabel("Must Be Close!")
 
 EggsTab:AddToggle({
@@ -152,6 +142,54 @@ EggsTab:AddToggle({
         AutoHatch()
 	end    
 })
+
+TpTab:AddButton({
+    Name = "Sarnek",
+        Callback = function()
+            function teleportTO(placeCFrame)
+                local plyr = game.Player.LocalPlayer;
+                if plyr.Character then
+                        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+                    end
+                 end
+function teleportworld(world)
+    if game:GetService("Workspace").Maps:FindFirstChild(world) then
+        teleportTO(game:GetService("Workspace").Maps[world].Teleport.CFrame)
+     end
+ end
+    
+teleportworld('Sarnek')
+    
+teleportTO(game:GetService("ReplicatedStorage").Remotes.portalTeleport:FireServer("Sarnek").CFrame)
+    print("button pressed")
+end
+})
+
+
+
+ TpTab:AddButton({
+    Name = "Ninja Town",
+        Callback = function()
+            function teleportTO(placeCFrame)
+                local plyr = game.Player.LocalPlayer;
+                if plyr.Character then
+                     plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+                end
+            end
+function teleportworld(world)
+    if game:GetService("Workspace").Maps:FindFirstChild(world) then
+         teleportTO(game:GetService("Workspace").Maps[world].Teleport.CFrame)
+    end
+ end
+            
+teleportworld('Ninja Town')
+            
+teleportTO(game:GetService("ReplicatedStorage").Remotes.portalTeleport:FireServer("Ninja Town").CFrame)
+ print("button pressed")
+ end
+})
+
+
 
 MiscTab:AddToggle({
 	Name = "Equip Best Pets(5sec)",
@@ -192,7 +230,7 @@ CreditsTab:AddLabel("Made by Howless <3")
 EggsTab:AddDropdown({
     Name = "SelectEgg",
 	Default = "Sarnek Egg",
-	Options = {"Sarnek Egg", "Ninja Town Egg"},
+	Options = {"Sarnek Egg", "Ninja Town's Egg"},
 	Callback = function(Value)
 		_G.SelectEgg = Value
         print(_G.SelectEgg)
